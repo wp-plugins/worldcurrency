@@ -73,7 +73,7 @@ Uses Yahoo! Finance (http://finance.yahoo.com) for conversion rates
 	background-color: #F2F2F2;
 	line-height: 18px;
 }
-.worldcurrency_selection_box small {
+.worldcurrency_selection_box .credits {
 	font-size: 11px;
 }
 EOT;
@@ -275,18 +275,19 @@ EOT;
 		$out .= '<div class="worldcurrency_selection_box">';
 		
 			// Renders the select box
-				$out .= 'Show currencies in: <select class="worldcurrency_select">';
+				$out .= '<div style="float:left;margin-right:4px;">Show currencies in:</div>';
+				$out .= '<select class="worldcurrency_select">';
 				foreach ($dt_wc_currencylist as $currencyCode => $currencyInfo) {
 					if (in_array($currencyCode, array('---'))) continue;
 					$out .= '<option value="'.$currencyCode.'">'.$currencyInfo['name'].'</option>';
 				}
-				$out .= '</select><br/>';
+				$out .= '</select>';
 				
 			// Renders the credits
-				if ($dt_wc_options['plugin_link'] == 'true' || $dt_wc_options['yahoo_link'] == 'true') $out .= '<small>Powered by';
+				if ($dt_wc_options['plugin_link'] == 'true' || $dt_wc_options['yahoo_link'] == 'true') $out .= '<div class="credits">Powered by';
 				if ($dt_wc_options['plugin_link'] == 'true') $out .= ' the <a href="http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/" target="_blank" title="World Currency plugin for Wordpress">WordCurrency</a> plugin.';
 				if ($dt_wc_options['yahoo_link'] == 'true') $out .= ' <a href="http://finance.yahoo.com" title="Visit Yahoo! Finance" target="_blank">Yahoo! Finance</a> for the rates.';
-				if ($dt_wc_options['plugin_link'] == 'true' || $dt_wc_options['yahoo_link'] == 'true') $out .= '</small>';
+				if ($dt_wc_options['plugin_link'] == 'true' || $dt_wc_options['yahoo_link'] == 'true') $out .= '</div>';
 			
 		$out .= '</div>'."\n";
 		
