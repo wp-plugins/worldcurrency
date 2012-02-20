@@ -15,6 +15,7 @@
 		if (isset($_POST['dt_wc_options_submit']) && check_admin_referer('worldcurrency_admin_page_submit')) {
 
 			$dt_wc_options['historic_rates']	= isset($_POST['historic_rates']) ? 'true' : 'false'; 
+			$dt_wc_options['hide_if_same']		= isset($_POST['hide_if_same']) ? 'true' : 'false'; 
 			$dt_wc_options['plugin_link']		= isset($_POST['plugin_link']) ? 'true' : 'false'; 
 			$dt_wc_options['yahoo_link']		= isset($_POST['yahoo_link']) ? 'true' : 'false'; 
 			$dt_wc_options['plugin_priority'] 	= absint($_POST['plugin_priority']); 
@@ -65,6 +66,14 @@
 							By default, the plugin displays the visitor's local currency based on the current exchange rate.<br />
 							Select this parameter if you want the use the exchange rate at the time of the post, rather than the current one.<br />
 							This default option can be overridden by a parameter directly in the shorttag.
+						</p>
+					
+						<p>
+							<h4>
+								Hide conversion if same currency as origin value:
+								<input type="checkbox" name="hide_if_same" id="hide_if_same" <?php if ($dt_wc_options['hide_if_same']=='true') {echo 'checked="checked"';}?> />
+							</h4>
+							Does not show the conversion if the origin value currency and the user local currency are the same
 						</p>
 						
 						<p>

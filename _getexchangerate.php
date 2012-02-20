@@ -66,6 +66,10 @@
 		$from_value = $from_value > 100 ? number_format($from_value,0,',','.') : number_format($from_value, 2,',','.');
 		$to_value = $to_value > 100 ? number_format($to_value,0,',','.') : number_format($to_value, 2,',','.');
 	
+	// Do not show conversions to the same currency
+		if ($dt_wc_options['hide_if_same'] == 'true' && $from_code == $to_code)
+			return;
+		
 	// Echo in the required format
 		echo str_replace(array('%exchange_rate%','%from_code%','%from_value%','%from_name%','%from_symbol%','%to_code%','%to_value%','%to_name%','%to_symbol%'), array($exchange_rate,$from_code,$from_value,$from_name,$from_symbol,$to_code,$to_value,$to_name,$to_symbol), $dt_wc_options['output_format']);
 		

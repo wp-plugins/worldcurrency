@@ -3,7 +3,7 @@
 Plugin Name: WorldCurrency
 Plugin URI: http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/
 Description: Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
-Version: 1.1
+Version: 1.2
 Date: 20th February 2012
 Author: Daniele Tieghi
 Author URI: http://www.cometicucinoilweb.it/blog/chi-siamo/daniele-tieghi/
@@ -57,6 +57,7 @@ Uses Yahoo! Finance (http://finance.yahoo.com) for conversion rates
 			if ($force || !isset($dt_wc_options['cache_rates']))		$dt_wc_options['cache_rates'] = null;
 			if ($force || !isset($dt_wc_options['cache_time']))			$dt_wc_options['cache_time'] = 0;
 			if ($force || !isset($dt_wc_options['historic_rates']))		$dt_wc_options['historic_rates'] = 'false';
+			if ($force || !isset($dt_wc_options['hide_if_same']))		$dt_wc_options['hide_if_same'] = 'true';
 			if ($force || !isset($dt_wc_options['output_format']))		$dt_wc_options['output_format'] = '(~%to_value%%to_symbol% %to_code%)';
 			if ($force || !isset($dt_wc_options['bottom_select']))		$dt_wc_options['bottom_select'] = 'true';
 			if ($force || !isset($dt_wc_options['include_jquery']))		$dt_wc_options['include_jquery'] = 'true';
@@ -274,20 +275,20 @@ EOT;
 		$out .= '<div class="worldcurrency_selection_box">';
 		
 			// Renders the select box
-				$out .= 'Show currencies in: <select class="worldcurrency_select">'."\n";
+				$out .= 'Show currencies in: <select class="worldcurrency_select">';
 				foreach ($dt_wc_currencylist as $currencyCode => $currencyInfo) {
 					if (in_array($currencyCode, array('---'))) continue;
-					$out .= '<option value="'.$currencyCode.'">'.$currencyInfo['name'].'</option>'."\n";
+					$out .= '<option value="'.$currencyCode.'">'.$currencyInfo['name'].'</option>';
 				}
-				$out .= '</select><br/>'."\n";
+				$out .= '</select><br/>';
 				
 			// Renders the credits
-				if ($dt_wc_options['plugin_link'] || $dt_wc_options['yahoo_link']) $out .= '<small>Powered by';
-				if ($dt_wc_options['plugin_link']) $out .= ' the <a href="http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/" target="_blank" title="World Currency plugin for Wordpress">WordCurrency</a> plugin.';
-				if ($dt_wc_options['yahoo_link']) $out .= ' <a href="http://finance.yahoo.com" title="Visit Yahoo! Finance" target="_blank">Yahoo! Finance</a> for the rates.';
-				if ($dt_wc_options['plugin_link'] || $dt_wc_options['yahoo_link']) $out .= '</small>';
+				if ($dt_wc_options['plugin_link'] == 'true' || $dt_wc_options['yahoo_link'] == 'true') $out .= '<small>Powered by';
+				if ($dt_wc_options['plugin_link'] == 'true') $out .= ' the <a href="http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/" target="_blank" title="World Currency plugin for Wordpress">WordCurrency</a> plugin.';
+				if ($dt_wc_options['yahoo_link'] == 'true') $out .= ' <a href="http://finance.yahoo.com" title="Visit Yahoo! Finance" target="_blank">Yahoo! Finance</a> for the rates.';
+				if ($dt_wc_options['plugin_link'] == 'true' || $dt_wc_options['yahoo_link'] == 'true') $out .= '</small>';
 			
-		$out .= '</div>';
+		$out .= '</div>'."\n";
 		
 		return $out;
 	}

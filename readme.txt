@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: currency, exchange rates, currency converter, currency rates, travel, financial, eCommerce
 Requires at least: 2.8.0
 Tested up to: 3.3.1
-Stable tag: 1.1
+Stable tag: 1.2
 
 Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
 
@@ -31,6 +31,7 @@ With this plugin you can obtain somethig like this: The price of the green curry
 * Currency selection box widget available
 * Currency selection box shorttag available [worldcurrencybox]
 * The currency selection box may be putted everywhere via html placeholder
+* Is possible to choose to hide conversion if target and origin currency are the same
 
 = How To Use (once plugin is installed) =
 Enter any currency values you want converted with the [worldcurrency] shorttag. 
@@ -89,6 +90,10 @@ Initial Release
 
 = 1.1 (20th February 2012) =
 Minor improvements and Currency selection box shorttag
+
+= 1.2 (20th February 2012) =
+* Minor corrections
+* Possibility to choose to hide conversion if target and origin currency are the same
 
 == Credits ==
 * Built on ideas and small code portions from [LocalCurrency by Stephen Cronin](http://www.jobsinchina.com/resources/wordpress-plugin-localcurrency)
