@@ -4,12 +4,15 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: currency, exchange rates, currency converter, currency rates, travel, financial, eCommerce
 Requires at least: 2.8.0
 Tested up to: 3.3.1
-Stable tag: 1.0
+Stable tag: 1.1
 
 Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
 
 == Description ==
-Show currency values to readers in their local currency, you can use multipe currencies per post. [worldcurrency curr="THB" value="120"] will became (~3.5$ USD) in United States and (~3€ EUR) from Europe)
+Show currency values to readers in their local currency, you can use multipe currencies per post.
+[worldcurrency curr="THB" value="120"] will became (~3.5$ USD) in United States and (~3€ EUR) from Europe)
+
+Any other informations may be found on the [plugin's homepage](http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/)
 
 = Why Use It? =
 It is really usefull (expecially for travel and commerce blogs) to show prices in the currency of the reader, so they'll find themself at home ;)
@@ -26,6 +29,7 @@ With this plugin you can obtain somethig like this: The price of the green curry
 * Gives site owner the choice of using current or historic (at publishing time) rates (globally or also per single conversion/post).
 * Allows visitors to change their currency via a selection box
 * Currency selection box widget available
+* Currency selection box shorttag available [worldcurrencybox]
 * The currency selection box may be putted everywhere via html placeholder
 
 = How To Use (once plugin is installed) =
@@ -35,17 +39,21 @@ Enter any currency values you want converted with the [worldcurrency] shorttag.
 		in united states will show: 
 			(~30$ USD)
   
-  Parameters:
+Parameters:
   
   		curr="***" 				-> the name of the value currency
   		value="***"				-> the value used for exchange
   		historic="true|false"	-> (optional) override main plugin setting
+
+If you want to show the currency selection box anywhere in the post/page use:
+
+	[worldcurrencybox]
 	  
 = Compatibility: =
-* This plugin requires WordPress 3.0 or above.
+* This plugin is written and tested on Wordpress 3.2.1 and Wordpress 3.3.1, but I think it will work on many other versions.
 
 = Support: =
-This plugin is officially not supported, but if you leave a comment on the plugin's page, I may be help.
+This plugin is not officially supported because is made in my free time, but leave a comment on the [plugin's homepage](http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/) and I may help ;)
 
 
 = Disclaimer =
@@ -77,7 +85,10 @@ There are no screenshots for this plugin, but there is a full demo on the [Plugi
 == Changelog ==
 
 = 1.0 (19th February 2012) =
-* Initial Release
+Initial Release
+
+= 1.1 (20th February 2012) =
+Minor improvements and Currency selection box shorttag
 
 == Credits ==
 * Built on ideas and small code portions from [LocalCurrency by Stephen Cronin](http://www.jobsinchina.com/resources/wordpress-plugin-localcurrency)

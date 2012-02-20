@@ -3,8 +3,8 @@
 Plugin Name: WorldCurrency
 Plugin URI: http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/
 Description: Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
-Version: 1.0
-Date: 18th February 2012
+Version: 1.1
+Date: 20th February 2012
 Author: Daniele Tieghi
 Author URI: http://www.cometicucinoilweb.it/blog/chi-siamo/daniele-tieghi/
    
@@ -41,6 +41,7 @@ Uses Yahoo! Finance (http://finance.yahoo.com) for conversion rates
 		add_action('publish_page', 'dt_wc_publish');
 		add_action('publish_post', 'dt_wc_publish');
 		add_shortcode('worldcurrency', 'dt_wc_shortcode');
+		add_shortcode('worldcurrencybox', 'dt_wc_shortcode_box');
 		add_filter('the_content', 'dt_wc_content', $dt_wc_options['plugin_priority']);
 		
 	// Register Widget
@@ -133,7 +134,12 @@ EOT;
 					// When the page is loaded
 					$(document).ready(function() {
 
-						// Load Currency selection boxes
+						// Register already rendere currency selection boxes
+						$('.worldcurrency_select').change(function() {
+							dt_worldCurrency_update($(this).attr('value'));
+						});
+
+						// Render Currency selection boxes
 						$('.worldcurrency_selection_box_placeholder').each(function() {
 		
 							var theDiv = $(this);
@@ -177,7 +183,7 @@ EOT;
 	// Retrieve user location via IP2C
 		function dt_wc_userlocation() {
 			global $dt_wc_locationlist;
-			require_once(trailingslashit(WP_PLUGIN_DIR). dirname(plugin_basename(__FILE__)).'/ip2c/ip2c.php');
+			require_once dirname(__FILE__).'/ip2c/ip2c.php';
 			
 			$ip2c = new ip2country();
 			$res = $ip2c->get_country($_SERVER['REMOTE_ADDR']);
@@ -205,9 +211,6 @@ EOT;
 	 * 		historic="true|false"	-> (optional) override main plugin setting
 	 * 
 	 * @param array $attr
-	 * @param string $content
-	 * 
-	 * it also sets the custom_field 'force_lc' of the post to 1
 	 */
 	function dt_wc_shortcode($attr) {
 		global $post;
@@ -219,6 +222,13 @@ EOT;
 			return '<span class="worldcurrency" postId="'.$post->ID.'" curr="'.$attr['curr'].'" value="'.$attr['value'].'" historic="'.$attr['historic'].'"></span>';
 		else
 			return '<span class="worldcurrency" postId="'.$post->ID.'" curr="'.$attr['curr'].'" value="'.$attr['value'].'"></span>';
+	}
+			
+	/**
+	 * Handler for [worldcurrencybox] shortcode that shows the currency selection box
+	 */
+	function dt_wc_shortcode_box() {
+		return dt_wc_getCurrencySelectionBox();
 	}
 	
 	/**
@@ -247,6 +257,37 @@ EOT;
 	function dt_wc_content($theContent) {
 		global $dt_wc_options;
 		if ($dt_wc_options['bottom_select'] == 'true' && strpos($theContent, 'worldcurrency') !== false)
-			$theContent .= "\n<div class=\"worldcurrency_selection_box_placeholder\"></div>";
+			$theContent .= dt_wc_getCurrencySelectionBox();
 		return $theContent;
+	}
+	
+	function dt_wc_getCurrencySelectionBox() {
+		$out = '';
+		
+		// Include our Yahoo!Finance class
+			require_once 'currencies.inc.php';
+			global $dt_wc_currencylist;
+		
+		// Retrieve current WC saved options from Wordpress
+			$dt_wc_options = get_option('dt_wc_options');
+	
+		$out .= '<div class="worldcurrency_selection_box">';
+		
+			// Renders the select box
+				$out .= 'Show currencies in: <select class="worldcurrency_select">'."\n";
+				foreach ($dt_wc_currencylist as $currencyCode => $currencyInfo) {
+					if (in_array($currencyCode, array('---'))) continue;
+					$out .= '<option value="'.$currencyCode.'">'.$currencyInfo['name'].'</option>'."\n";
+				}
+				$out .= '</select><br/>'."\n";
+				
+			// Renders the credits
+				if ($dt_wc_options['plugin_link'] || $dt_wc_options['yahoo_link']) $out .= '<small>Powered by';
+				if ($dt_wc_options['plugin_link']) $out .= ' the <a href="http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/" target="_blank" title="World Currency plugin for Wordpress">WordCurrency</a> plugin.';
+				if ($dt_wc_options['yahoo_link']) $out .= ' <a href="http://finance.yahoo.com" title="Visit Yahoo! Finance" target="_blank">Yahoo! Finance</a> for the rates.';
+				if ($dt_wc_options['plugin_link'] || $dt_wc_options['yahoo_link']) $out .= '</small>';
+			
+		$out .= '</div>';
+		
+		return $out;
 	}

@@ -14,7 +14,7 @@
 		}
 		 
 		function widget($args, $instance) {
-			echo "<div class=\"worldcurrency_selection_box_placeholder\"></div>";
+			echo dt_wc_getCurrencySelectionBox();
 		}
 	 
 	}

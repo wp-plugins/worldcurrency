@@ -173,7 +173,11 @@
 						  	</ul>
 						</p>
 						<p>
-							You can also put this HTML code:<br /><br />
+							You can also put this shorttag:<br /><br />
+							<code style="padding:5px;margin:10px;">
+								[worldcurrencybox]
+							</code><br /><br />
+							Or this HTML code:<br /><br />
 							<code style="padding:5px;margin:10px;">
 								&lt;div class="worldcurrency_selection_box_placeholder"&gt;&lt;/div&gt;
 							</code><br /><br />
