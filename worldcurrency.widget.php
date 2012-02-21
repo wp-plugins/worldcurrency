@@ -14,7 +14,9 @@
 		}
 		 
 		function widget($args, $instance) {
-			echo dt_wc_getCurrencySelectionBox();
+			global $post;
+			if (strpos($post->post_content, 'worldcurrency') !== false)
+				echo dt_wc_getCurrencySelectionBox();
 		}
 	 
 	}
