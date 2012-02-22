@@ -3,7 +3,7 @@
 Plugin Name: WorldCurrency
 Plugin URI: http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/
 Description: Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
-Version: 1.5
+Version: 1.6
 Date: 21th February 2012
 Author: Daniele Tieghi
 Author URI: http://www.cometicucinoilweb.it/blog/chi-siamo/daniele-tieghi/
@@ -61,6 +61,7 @@ Uses Yahoo! Finance (http://finance.yahoo.com) for conversion rates
 			if ($force || !isset($dt_wc_options['output_format']))		$dt_wc_options['output_format'] = '(~%to_value%%to_symbol% %to_code%)';
 			if ($force || !isset($dt_wc_options['bottom_select']))		$dt_wc_options['bottom_select'] = 'true';
 			if ($force || !isset($dt_wc_options['include_jquery']))		$dt_wc_options['include_jquery'] = 'true';
+			if ($force || !isset($dt_wc_options['jquery_no_conflict']))		$dt_wc_options['jquery_no_conflict'] = 'false';
 			if ($force || !isset($dt_wc_options['plugin_priority']))	$dt_wc_options['plugin_priority'] = 10;
 			if ($force || !isset($dt_wc_options['additional_css']))		$dt_wc_options['additional_css'] = <<<EOT
 .worldcurrency {
@@ -92,6 +93,8 @@ EOT;
 			
 			$dt_wc_options = get_option('dt_wc_options');
 			
+			$jQuerySymbol = $dt_wc_options['jquery_no_conflict'] == 'true' ? 'jQuery' : '$';
+			
 			// Include the script only if necessary
 			if (strpos($post->post_content, 'worldcurrency') !== false) {
 				
@@ -107,13 +110,17 @@ EOT;
 				?>
 				<script type="text/javascript">
 				<!--
+
+					<?php if ($dt_wc_options['jquery_no_conflict'] == 'true'): ?>
+						jQuery.noConflict();
+					<?php endif; ?>
 	
 					dt_worldCurrency_update = function(userCurrency) {
 						// For each worldcurrency <span> get the value
-						$('.worldcurrency').each(function() {
+						<?php echo $jQuerySymbol; ?>('.worldcurrency').each(function() {
 		
-							var theSpan = $(this);
-							$.ajax({
+							var theSpan = <?php echo $jQuerySymbol; ?>(this);
+							<?php echo $jQuerySymbol; ?>.ajax({
 								url: '<?php echo wp_nonce_url(plugins_url(dirname(plugin_basename(__FILE__))).'/_getexchangerate.php', 'worldcurrency_safe'); ?>',
 								dataType: 'html',
 								type: 'GET',
@@ -128,23 +135,23 @@ EOT;
 						});	
 
 						// For each Currency selection box, chose the right value
-						$('.worldcurrency_select').val(userCurrency);
+						<?php echo $jQuerySymbol; ?>('.worldcurrency_select').val(userCurrency);
 						
 					}
 	
 					// When the page is loaded
-					$(document).ready(function() {
+					<?php echo $jQuerySymbol; ?>(document).ready(function() {
 
 						// Register already rendere currency selection boxes
-						$('.worldcurrency_select').change(function() {
-							dt_worldCurrency_update($(this).attr('value'));
+						<?php echo $jQuerySymbol; ?>('.worldcurrency_select').change(function() {
+							dt_worldCurrency_update(<?php echo $jQuerySymbol; ?>(this).attr('value'));
 						});
 
 						// Render Currency selection boxes
-						$('.worldcurrency_selection_box_placeholder').each(function() {
+						<?php echo $jQuerySymbol; ?>('.worldcurrency_selection_box_placeholder').each(function() {
 		
-							var theDiv = $(this);
-							$.ajax({
+							var theDiv = <?php echo $jQuerySymbol; ?>(this);
+							<?php echo $jQuerySymbol; ?>.ajax({
 								url: '<?php echo wp_nonce_url(plugins_url(dirname(plugin_basename(__FILE__))).'/_getcurrencyselectionbox.php', 'worldcurrency_safe'); ?>',
 								dataType: 'html',
 								type: 'GET',
@@ -157,7 +164,7 @@ EOT;
 									theSelect.val('<?php echo $usercurrency; ?>');
 									// On change update currency
 									theSelect.change(function() {
-										dt_worldCurrency_update($(this).attr('value'));
+										dt_worldCurrency_update(<?php echo $jQuerySymbol; ?>(this).attr('value'));
 									});
 								},
 								error: function(jqXHR, textStatus, errorThrown) {

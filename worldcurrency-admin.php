@@ -14,15 +14,16 @@
 		// Post the form
 		if (isset($_POST['dt_wc_options_submit']) && check_admin_referer('worldcurrency_admin_page_submit')) {
 
-			$dt_wc_options['historic_rates']	= isset($_POST['historic_rates']) ? 'true' : 'false'; 
-			$dt_wc_options['hide_if_same']		= isset($_POST['hide_if_same']) ? 'true' : 'false'; 
-			$dt_wc_options['plugin_link']		= isset($_POST['plugin_link']) ? 'true' : 'false'; 
-			$dt_wc_options['yahoo_link']		= isset($_POST['yahoo_link']) ? 'true' : 'false'; 
-			$dt_wc_options['plugin_priority'] 	= absint($_POST['plugin_priority']); 
-			$dt_wc_options['output_format'] 	= $_POST['output_format']; 
-			$dt_wc_options['additional_css'] 	= $_POST['additional_css']; 
-			$dt_wc_options['bottom_select']		= isset($_POST['bottom_select']) ? 'true' : 'false'; 
-			$dt_wc_options['include_jquery']	= isset($_POST['include_jquery']) ? 'true' : 'false'; 
+			$dt_wc_options['historic_rates']		= isset($_POST['historic_rates']) ? 'true' : 'false'; 
+			$dt_wc_options['hide_if_same']			= isset($_POST['hide_if_same']) ? 'true' : 'false'; 
+			$dt_wc_options['plugin_link']			= isset($_POST['plugin_link']) ? 'true' : 'false'; 
+			$dt_wc_options['yahoo_link']			= isset($_POST['yahoo_link']) ? 'true' : 'false'; 
+			$dt_wc_options['plugin_priority'] 		= absint($_POST['plugin_priority']); 
+			$dt_wc_options['output_format'] 		= $_POST['output_format']; 
+			$dt_wc_options['additional_css'] 		= $_POST['additional_css']; 
+			$dt_wc_options['bottom_select']			= isset($_POST['bottom_select']) ? 'true' : 'false'; 
+			$dt_wc_options['include_jquery']		= isset($_POST['include_jquery']) ? 'true' : 'false'; 
+			$dt_wc_options['jquery_no_conflict']	= isset($_POST['jquery_no_conflict']) ? 'true' : 'false'; 
 			
 			update_option('dt_wc_options', $dt_wc_options);
 			
@@ -122,13 +123,20 @@
 							Automatically puts a currency selection box at the bottom of every page/post that has currency conversions in them.
 						</p>
 						
-						
 						<p>
 							<h4>
 								Include jQuery:
 								<input type="checkbox" name="include_jquery" id="include_jquery" <?php if ($dt_wc_options['include_jquery']=='true') {echo 'checked="checked"';}?> />
 							</h4>
 							This plugin uses and includes jQuery, if you already have jQuery included in your blog pages (by theme or other plugins), you may want to disable this.
+						</p>
+						
+						<p>
+							<h4>
+								jQuery no conflict:
+								<input type="checkbox" name="jquery_no_conflict" id="jquery_no_conflict" <?php if ($dt_wc_options['jquery_no_conflict']=='true') {echo 'checked="checked"';}?> />
+							</h4>
+							Uses "jQuery" instead of "$" for calling jQuery functions. Usefull also if you have a noconflict version of jQuery included by other themes/plugins
 						</p>
 						
 						<p>
