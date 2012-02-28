@@ -2,6 +2,12 @@
 
 	require_once 'currencies.inc.php';
 	
+	/**
+	 * Class used to get informations from yahoo finance or to load them from a serialized string
+	 * Used by WordCurrency plugin for Wordpress
+	 * 
+	 * @author Daniele Tieghi
+	 */
 	class yahoofinance {
 		
 		/**

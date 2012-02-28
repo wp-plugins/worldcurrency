@@ -218,6 +218,7 @@
 						
 						<p>Thank you for using the WorldCurrency plugin. If you like this plugin, you may like to:</p>
 						<ul style="font-size:1em; margin:12px 40px; list-style:disc">
+							<li>Rate this plugin on the <a href="http://wordpress.org/extend/plugins/worldcurrency/" target="_blank">WordPress plugin directory</a></li>
 							<li>Link to the <a href="http://www.cometicucinoilweb.it/blog/en/worldcurrency/" target="_blank">plugin's home page</a> so others can find out about it</li>
 							<li>Support ongoing development by <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6CUNDYFWV4NUW">making a donation</a></li>
 						</ul>
