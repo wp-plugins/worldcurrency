@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: currency, exchange rates, currency converter, currency rates, travel, financial, eCommerce
 Requires at least: 2.8.0
 Tested up to: 3.3.1
-Stable tag: 1.8
+Stable tag: 1.9
 
 Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
 
@@ -33,6 +33,7 @@ With this plugin you can obtain somethig like this: The price of the green curry
 * The currency selection box may be putted everywhere via html placeholder
 * Is possible to choose to hide conversion if target and origin currency are the same
 * Is possible to choose to make ajax calls over SSL
+* Is possible to choose the decimal and thousands separator for the output format
 
 = How To Use (once plugin is installed) =
 Enter any currency values you want converted with the [worldcurrency] shorttag. 
@@ -89,6 +90,9 @@ Feel free to propose them.
 There are no screenshots for this plugin, but there is a full demo on the [Plugin's Homepage](http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/)
 
 == Changelog ==
+
+= 1.9 (29th February 2012) =
+* Added: is now possible to choose the decimal and thousands separator for the output formatting
 
 = 1.8 (29th February 2012) =
 * Fix: ajax was not working if wordpress admin is under forced SSL with: define('FORCE_SSL_LOGIN', true);

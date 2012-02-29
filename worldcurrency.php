@@ -3,7 +3,7 @@
 Plugin Name: WorldCurrency
 Plugin URI: http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/
 Description: Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
-Version: 1.8
+Version: 1.9
 Date: 29th February 2012
 Author: Daniele Tieghi
 Author URI: http://www.cometicucinoilweb.it/blog/chi-siamo/daniele-tieghi/
@@ -57,19 +57,22 @@ Uses Yahoo! Finance (http://finance.yahoo.com) for conversion rates
 			
 			$dt_wc_options = get_option('$dt_wc_options');
 	
-			if ($force || !isset($dt_wc_options['plugin_link']))		$dt_wc_options['plugin_link'] = 'true';
-			if ($force || !isset($dt_wc_options['yahoo_link']))			$dt_wc_options['yahoo_link'] = 'true';
-			if ($force || !isset($dt_wc_options['cache_rates']))		$dt_wc_options['cache_rates'] = null;
-			if ($force || !isset($dt_wc_options['cache_time']))			$dt_wc_options['cache_time'] = 0;
-			if ($force || !isset($dt_wc_options['historic_rates']))		$dt_wc_options['historic_rates'] = 'false';
-			if ($force || !isset($dt_wc_options['hide_if_same']))		$dt_wc_options['hide_if_same'] = 'true';
-			if ($force || !isset($dt_wc_options['output_format']))		$dt_wc_options['output_format'] = '(~%to_value%%to_symbol% %to_code%)';
-			if ($force || !isset($dt_wc_options['bottom_select']))		$dt_wc_options['bottom_select'] = 'true';
-			if ($force || !isset($dt_wc_options['include_jquery']))		$dt_wc_options['include_jquery'] = 'true';
-			if ($force || !isset($dt_wc_options['jquery_no_conflict']))	$dt_wc_options['jquery_no_conflict'] = 'false';
-			if ($force || !isset($dt_wc_options['ajax_over_ssl']))		$dt_wc_options['ajax_over_ssl'] = 'false';
-			if ($force || !isset($dt_wc_options['plugin_priority']))	$dt_wc_options['plugin_priority'] = 10;
-			if ($force || !isset($dt_wc_options['additional_css']))		$dt_wc_options['additional_css'] = <<<EOT
+			if ($force || !isset($dt_wc_options['plugin_link']))			$dt_wc_options['plugin_link'] = 'true';
+			if ($force || !isset($dt_wc_options['yahoo_link']))				$dt_wc_options['yahoo_link'] = 'true';
+			if ($force || !isset($dt_wc_options['cache_rates']))			$dt_wc_options['cache_rates'] = null;
+			if ($force || !isset($dt_wc_options['cache_time']))				$dt_wc_options['cache_time'] = 0;
+			if ($force || !isset($dt_wc_options['historic_rates']))			$dt_wc_options['historic_rates'] = 'false';
+			if ($force || !isset($dt_wc_options['hide_if_same']))			$dt_wc_options['hide_if_same'] = 'true';
+			if ($force || !isset($dt_wc_options['output_format']))			$dt_wc_options['output_format'] = '(~%to_value%%to_symbol% %to_code%)';
+			if ($force || !isset($dt_wc_options['thousands_separator']))	$dt_wc_options['thousands_separator'] = '.';
+			if ($force || !isset($dt_wc_options['decimal_separator']))		$dt_wc_options['decimal_separator'] = ',';
+			if ($force || !isset($dt_wc_options['output_format']))			$dt_wc_options['output_format'] = '(~%to_value%%to_symbol% %to_code%)';
+			if ($force || !isset($dt_wc_options['bottom_select']))			$dt_wc_options['bottom_select'] = 'true';
+			if ($force || !isset($dt_wc_options['include_jquery']))			$dt_wc_options['include_jquery'] = 'true';
+			if ($force || !isset($dt_wc_options['jquery_no_conflict']))		$dt_wc_options['jquery_no_conflict'] = 'false';
+			if ($force || !isset($dt_wc_options['ajax_over_ssl']))			$dt_wc_options['ajax_over_ssl'] = 'false';
+			if ($force || !isset($dt_wc_options['plugin_priority']))		$dt_wc_options['plugin_priority'] = 10;
+			if ($force || !isset($dt_wc_options['additional_css']))			$dt_wc_options['additional_css'] = <<<EOT
 .worldcurrency {
 	color: #888;
 }
@@ -373,6 +376,11 @@ EOT;
 			
 		}
 		
+		// Get the separators format
+		$thousands_separator = isset($dt_wc_options['thousands_separator']) ? $dt_wc_options['thousands_separator'] : '.';
+		$decimals_separator = isset($dt_wc_options['decimal_separator']) ? $dt_wc_options['decimal_separator'] : ',';
+
+		
 		// Load the quotes obtained
 			$YahooFinance->loadSerializedQuotes($serializedQuotes);
 	
@@ -392,8 +400,8 @@ EOT;
 			
 		// Round the numbers
 			$exchange_rate = number_format($exchange_rate,2,',','.');
-			$from_value = $from_value > 100 ? number_format($from_value,0,',','.') : number_format($from_value, 2,',','.');
-			$to_value = $to_value > 100 ? number_format($to_value,0,',','.') : number_format($to_value, 2,',','.');
+			$from_value = $from_value > 100 ? number_format($from_value,0,$decimals_separator,$thousands_separator) : number_format($from_value, 2,$decimals_separator,$thousands_separator);
+			$to_value = $to_value > 100 ? number_format($to_value,0,$decimals_separator,$thousands_separator) : number_format($to_value, 2,$decimals_separator,$thousands_separator);
 		
 		// Do not show conversions to the same currency
 			if ($dt_wc_options['hide_if_same'] == 'true' && $from_code == $to_code)

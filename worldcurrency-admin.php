@@ -20,6 +20,8 @@
 			$dt_wc_options['yahoo_link']			= isset($_POST['yahoo_link']) ? 'true' : 'false'; 
 			$dt_wc_options['plugin_priority'] 		= absint($_POST['plugin_priority']); 
 			$dt_wc_options['output_format'] 		= $_POST['output_format']; 
+			$dt_wc_options['thousands_separator'] 	= $_POST['thousands_separator']; 
+			$dt_wc_options['decimal_separator'] 	= $_POST['decimal_separator']; 
 			$dt_wc_options['additional_css'] 		= $_POST['additional_css']; 
 			$dt_wc_options['bottom_select']			= isset($_POST['bottom_select']) ? 'true' : 'false'; 
 			$dt_wc_options['include_jquery']		= isset($_POST['include_jquery']) ? 'true' : 'false'; 
@@ -52,12 +54,12 @@
 			<h2>WorldCurrency Settings</h2>			
 			<div id="poststuff">
 			
-				<div class="stuffbox">
+				<form name="worldcurrency_options_form" action="" method="post">			
 				
+				<div class="stuffbox">
 					<h3>General Settings</h3>
 					<div class="inside">
-					
-						<form name="worldcurrency_options_form" action="" method="post">
+	
 						<?php if (function_exists('wp_nonce_field')) {wp_nonce_field('worldcurrency_admin_page_submit'); }?>
 					
 						<p>
@@ -77,25 +79,7 @@
 							</h4>
 							Does not show the conversion if the origin value currency and the user local currency are the same
 						</p>
-						
-						<p>
-							<h4>
-								Plugin Link:
-								<input type="checkbox" name="plugin_link" id="plugin_link" <?php if ($dt_wc_options['plugin_link']=='true') {echo 'checked="checked"';}?> />
-							</h4>
-							By default, a link to the plugin home page is included near the currency select box.<br />
-							Deselect this parameter if you want to disable the link, but <u>keep in mind that leaving the link is one the best ways to support this plugin</u>.
-						</p>
-						
-						<p>
-							<h4>
-								Yahoo Link:
-								<input type="checkbox" name="yahoo_link" id="yahoo_link" <?php if ($dt_wc_options['yahoo_link']=='true') {echo 'checked="checked"';}?> />
-							</h4>
-							By legal requirement a link to Yahoo! Finance will be shown near the currency select box.<br />
-							Disable this only if you want to put this link elsewhere (ie: footer).
-						</p>
-						
+
 						<p>
 							<h4>
 								Output format:
@@ -115,6 +99,22 @@
 								<li>%to_name% - shows the full name of the target currency (ie: 'Euro (EUR)')</li>
 							</ul>
 						</p>
+
+						<p>
+							<h4>
+								Thousands separator:
+								<input type="text" size="80" name="thousands_separator" value="<?php echo isset($dt_wc_options['thousands_separator']) ? $dt_wc_options['thousands_separator'] : '.'; ?>" />
+							</h4>
+							The character used to separate the tousands in the output (usually , or .)
+						</p>
+						
+						<p>
+							<h4>
+								Decimals separator:
+								<input type="text" size="80" name="decimal_separator" value="<?php echo isset($dt_wc_options['decimal_separator']) ? $dt_wc_options['decimal_separator'] : ','; ?>" />
+							</h4>
+							The character used to separate the decimal numbers in the output (usually , or .)
+						</p>
 						
 						<p>
 							<h4>
@@ -124,6 +124,42 @@
 							Automatically puts a currency selection box at the bottom of every page/post that has currency conversions in them.
 						</p>
 						
+						<p>
+							<h4>
+								Plugin Link:
+								<input type="checkbox" name="plugin_link" id="plugin_link" <?php if ($dt_wc_options['plugin_link']=='true') {echo 'checked="checked"';}?> />
+							</h4>
+							By default, a link to the plugin home page is included near the currency selection box.<br />
+							Deselect this parameter if you want to disable the link, but <u>keep in mind that leaving the link is one the best ways to support this plugin</u>.
+						</p>
+						
+						<p>
+							<h4>
+								Yahoo Link:
+								<input type="checkbox" name="yahoo_link" id="yahoo_link" <?php if ($dt_wc_options['yahoo_link']=='true') {echo 'checked="checked"';}?> />
+							</h4>
+							By legal requirement a link to Yahoo! Finance will be shown near the currency selection box.<br />
+							Disable this only if you want to put this link elsewhere (ie: footer).
+						</p>
+												
+						<p>
+							<h4>
+								Additional CSS styles:<br />
+								<textarea name="additional_css" style="width:90%;height:250px;"><?php echo $dt_wc_options['additional_css']; ?></textarea>
+							</h4>
+							It is possible to change/set the styles of the converted values (.worldcurrency) and of the selection box (.worldcurrency_selection_box). Only for advanced users ;)
+						</p>
+
+						<div style="clear:both"></div>
+					</div>
+				</div>
+
+
+				<!-- Usage Section -->
+				<div class="stuffbox">
+					<h3>Technical Settings</h3>
+					<div class="inside">
+
 						<p>
 							<h4>
 								Include jQuery:
@@ -158,27 +194,17 @@
 							some problems.
 						</p>
 											
-						<p>
-							<h4>
-								Additional CSS styles:<br />
-								<textarea name="additional_css" style="width:90%;height:250px;"><?php echo $dt_wc_options['additional_css']; ?></textarea>
-							</h4>
-							It is possible to change/set the styles of the converted values (.worldcurrency) and of the selection box (.worldcurrency_selection_box). Only for advanced users ;)
-						</p>
+					</div> 
+				</div> 
+				
+				<!-- Show Update Button -->
+				<div class="submit">
+					<input type="submit" name="dt_wc_options_submit" value="Update Options &raquo;"/>
+					<input type="submit" name="dt_wc_options_reset" value="Reset Options &raquo;"/>
+				</div>	
 
-						<!-- Show Update Button -->
-						<div class="submit">
-						<input type="submit" name="dt_wc_options_submit" value="Update Options &raquo;"/>
-						<input type="submit" name="dt_wc_options_reset" value="Reset Options &raquo;"/>
-						</div>	
-
-
-						</form>
-						<div style="clear:both"></div>
-					</div>
-				</div>
-
-
+				</form>
+				
 				<!-- Usage Section -->
 				<div class="stuffbox">
 					<h3>Usage</h3>
@@ -199,15 +225,17 @@
 						  	</ul>
 						</p>
 						<p>
-							You can also put this shorttag:<br /><br />
+							You can also put this shorttag in pages/posts:<br /><br />
 							<code style="padding:5px;margin:10px;">
 								[worldcurrencybox]
 							</code><br /><br />
-							Or this HTML code:<br /><br />
+							Or this HTML code anywhere else:<br /><br />
 							<code style="padding:5px;margin:10px;">
 								&lt;div class="worldcurrency_selection_box_placeholder"&gt;&lt;/div&gt;
 							</code><br /><br />
-							wherever you want the selection box to be shown (or select the option above to show it automatically at the bottom of the post)
+							wherever you want the <b>currency selection box</b> to be shown (or select the option above to show it automatically at the bottom of the post)<br />
+							<br />
+							There is also a <b>Widget</b> (for the sidebar) wich shows the Currency Selection Box only if there are currencies on the page.
 					</div> 
 				</div> 
 
