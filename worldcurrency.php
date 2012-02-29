@@ -3,8 +3,8 @@
 Plugin Name: WorldCurrency
 Plugin URI: http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/
 Description: Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
-Version: 1.7
-Date: 28th February 2012
+Version: 1.8
+Date: 29th February 2012
 Author: Daniele Tieghi
 Author URI: http://www.cometicucinoilweb.it/blog/chi-siamo/daniele-tieghi/
    
@@ -66,7 +66,8 @@ Uses Yahoo! Finance (http://finance.yahoo.com) for conversion rates
 			if ($force || !isset($dt_wc_options['output_format']))		$dt_wc_options['output_format'] = '(~%to_value%%to_symbol% %to_code%)';
 			if ($force || !isset($dt_wc_options['bottom_select']))		$dt_wc_options['bottom_select'] = 'true';
 			if ($force || !isset($dt_wc_options['include_jquery']))		$dt_wc_options['include_jquery'] = 'true';
-			if ($force || !isset($dt_wc_options['jquery_no_conflict']))		$dt_wc_options['jquery_no_conflict'] = 'false';
+			if ($force || !isset($dt_wc_options['jquery_no_conflict']))	$dt_wc_options['jquery_no_conflict'] = 'false';
+			if ($force || !isset($dt_wc_options['ajax_over_ssl']))		$dt_wc_options['ajax_over_ssl'] = 'false';
 			if ($force || !isset($dt_wc_options['plugin_priority']))	$dt_wc_options['plugin_priority'] = 10;
 			if ($force || !isset($dt_wc_options['additional_css']))		$dt_wc_options['additional_css'] = <<<EOT
 .worldcurrency {
@@ -112,6 +113,12 @@ EOT;
 				if ($dt_wc_options['include_jquery'] == 'true')
 					echo "<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>\n";
 					
+				if ($dt_wc_options['ajax_over_ssl'] == 'true') {
+					$ajax_url = wp_nonce_url(str_replace('http','https', admin_url('admin-ajax.php')), 'worldcurrency_safe');
+				} else {
+					$ajax_url = wp_nonce_url(str_replace('https','http', admin_url('admin-ajax.php')), 'worldcurrency_safe');
+				}
+				
 				?>
 				<script type="text/javascript">
 				<!--
@@ -126,7 +133,7 @@ EOT;
 		
 							var theSpan = <?php echo $jQuerySymbol; ?>(this);
 							<?php echo $jQuerySymbol; ?>.ajax({
-								url: '<?php echo wp_nonce_url(admin_url('admin-ajax.php'), 'worldcurrency_safe'); ?>',
+								url: '<?php echo $ajax_url; ?>',
 								dataType: 'html',
 								type: 'GET',
 								data: {'action':'worldcurrency', 'to':userCurrency, 'from':theSpan.attr('curr'), 'value':theSpan.attr('value'), 'postId':theSpan.attr('postId'), 'historic':theSpan.attr('historic') ? theSpan.attr('historic') : '<?php echo $dt_wc_options['historic_rates']; ?>'},
@@ -157,7 +164,7 @@ EOT;
 		
 							var theDiv = <?php echo $jQuerySymbol; ?>(this);
 							<?php echo $jQuerySymbol; ?>.ajax({
-								url: '<?php echo wp_nonce_url(admin_url('admin-ajax.php'), 'worldcurrency_safe'); ?>',
+								url: '<?php echo $ajax_url; ?>',
 								dataType: 'html',
 								type: 'GET',
 								data: {'action':'worldcurrencybox'},
@@ -332,7 +339,7 @@ EOT;
 		
 		// Don't proceed if we don't have enough info or if the nonce fails
 			if (!isset($_GET['value']) || !isset($_GET['postId']) || !isset($_GET['historic']) || !isset($_GET['from']) || !isset($_GET['to']) || !check_admin_referer('worldcurrency_safe')) 
-				die();
+				exit;
 			
 		// Include our Yahoo!Finance class
 			require_once 'yahoofinance.class.php';
@@ -390,7 +397,7 @@ EOT;
 		
 		// Do not show conversions to the same currency
 			if ($dt_wc_options['hide_if_same'] == 'true' && $from_code == $to_code)
-				return;
+				exit;
 			
 		// Echo in the required format
 			echo str_replace(array('%exchange_rate%','%from_code%','%from_value%','%from_name%','%from_symbol%','%to_code%','%to_value%','%to_name%','%to_symbol%'), array($exchange_rate,$from_code,$from_value,$from_name,$from_symbol,$to_code,$to_value,$to_name,$to_symbol), $dt_wc_options['output_format']);

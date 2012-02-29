@@ -16,8 +16,6 @@
 	$dt_wc_currencylist['JPY'] = array('name'=>'Japanese Yen (JPY)', 'symbol'=>'&#165;');
 	$dt_wc_currencylist['RUB'] = array('name'=>'Russian Rouble (RUB)', 'symbol'=>'&#1088;&#1091;&#1073;');
 	$dt_wc_currencylist['---'] = array('name'=>'-------------------', 'symbol'=>'---');
-	$dt_wc_currencylist['AED'] = array('name'=>'UAE Dirham (AED)', 'symbol'=>'&#1583;.&#1573;');
-	$dt_wc_currencylist['ANG'] = array('name'=>'Neth Antilles Guilder (ANG)', 'symbol'=>'&#402;');
 	$dt_wc_currencylist['ARS'] = array('name'=>'Argentine Peso (ARS)', 'symbol'=>'$');
 	$dt_wc_currencylist['AWG'] = array('name'=>'Aruba Florin (AWG)', 'symbol'=>'&#402;');
 	$dt_wc_currencylist['BBD'] = array('name'=>'Barbados Dollar (BBD)', 'symbol'=>'$');
@@ -47,9 +45,11 @@
 	$dt_wc_currencylist['ECS'] = array('name'=>'Ecuador Sucre (ECS)', 'symbol'=>'');
 	$dt_wc_currencylist['EEK'] = array('name'=>'Estonian Kroon (EEK)', 'symbol'=>'kr');
 	$dt_wc_currencylist['EGP'] = array('name'=>'Egyptian Pound (EGP)', 'symbol'=>'&#163;');
+	$dt_wc_currencylist['SVC'] = array('name'=>'El Salvador Colon (SVC)', 'symbol'=>'$');
 	$dt_wc_currencylist['ERN'] = array('name'=>'Eritrea Nakfa (ERN)', 'symbol'=>'Nfk');
 	$dt_wc_currencylist['ETB'] = array('name'=>'Ethiopian Birr (ETB)', 'symbol'=>'');
 	$dt_wc_currencylist['FKP'] = array('name'=>'Falkland Islands Pound (FKP)', 'symbol'=>'&#163;');
+	$dt_wc_currencylist['FJD'] = array('name'=>'Fijian dollar (FJD)', 'symbol'=>'F$');
 	$dt_wc_currencylist['GHC'] = array('name'=>'Ghanian Cedi (GHC)', 'symbol'=>'&#162;');
 	$dt_wc_currencylist['GIP'] = array('name'=>'Gibraltar Pound (GIP)', 'symbol'=>'&#163;');
 	$dt_wc_currencylist['GMD'] = array('name'=>'Gambian Dalasi (GMD)', 'symbol'=>'D');
@@ -76,7 +76,6 @@
 	$dt_wc_currencylist['KZT'] = array('name'=>'Kazakhstan Tenge (KZT)', 'symbol'=>'&#1083;&#1074;');
 	$dt_wc_currencylist['LAK'] = array('name'=>'Lao Kip (LAK)', 'symbol'=>'&#8365;');
 	$dt_wc_currencylist['LBP'] = array('name'=>'Lebanese Pound (LBP)', 'symbol'=>'&#163;');
-	$dt_wc_currencylist['LKR'] = array('name'=>'Sri Lanka Rupee (LKR)', 'symbol'=>'&#8360;');
 	$dt_wc_currencylist['LSL'] = array('name'=>'Lesotho Loti (LSL)', 'symbol'=>'L');
 	$dt_wc_currencylist['LTL'] = array('name'=>'Lithuanian Lita (LTL)', 'symbol'=>'Lt');
 	$dt_wc_currencylist['LVL'] = array('name'=>'Latvian Lat (LVL)', 'symbol'=>'Ls');
@@ -96,6 +95,7 @@
 	$dt_wc_currencylist['MYR'] = array('name'=>'Malaysian Ringgit (MYR)', 'symbol'=>'RM');
 	$dt_wc_currencylist['MZN'] = array('name'=>'Mozambique Metical (MZM)', 'symbol'=>'MTn');
 	$dt_wc_currencylist['NAD'] = array('name'=>'Namibian Dollar (NAD)', 'symbol'=>'$');
+	$dt_wc_currencylist['ANG'] = array('name'=>'Neth Antilles Guilder (ANG)', 'symbol'=>'&#402;');
 	$dt_wc_currencylist['NGN'] = array('name'=>'Nigerian Naira (NGN)', 'symbol'=>'&#8358;');
 	$dt_wc_currencylist['NIO'] = array('name'=>'Nicaragua Cordoba (NIO)', 'symbol'=>'C$');
 	$dt_wc_currencylist['NOK'] = array('name'=>'Norwegian Krone (NOK)', 'symbol'=>'kr');
@@ -120,9 +120,9 @@
 	$dt_wc_currencylist['SKK'] = array('name'=>'Slovak Koruna (SKK)', 'symbol'=>'SIT');
 	$dt_wc_currencylist['SLL'] = array('name'=>'Sierra Leone Leone (SLL)', 'symbol'=>'Le');
 	$dt_wc_currencylist['SOS'] = array('name'=>'Somali Shilling (SOS)', 'symbol'=>'S');
+	$dt_wc_currencylist['LKR'] = array('name'=>'Sri Lanka Rupee (LKR)', 'symbol'=>'&#8360;');
 	$dt_wc_currencylist['SRD'] = array('name'=>'Surinam Guilder (SRG)', 'symbol'=>'$');
 	$dt_wc_currencylist['STD'] = array('name'=>'Sao Tome Dobra (STD)', 'symbol'=>'Db');
-	$dt_wc_currencylist['SVC'] = array('name'=>'El Salvador Colon (SVC)', 'symbol'=>'$');
 	$dt_wc_currencylist['SYP'] = array('name'=>'Syrian Pound (SYP)', 'symbol'=>'&#163;');
 	$dt_wc_currencylist['SZL'] = array('name'=>'Swaziland Lilageni (SZL)', 'symbol'=>'L');
 	$dt_wc_currencylist['THB'] = array('name'=>'Thai Baht (THB)', 'symbol'=>'&#3647;');
@@ -143,6 +143,7 @@
 	$dt_wc_currencylist['XCD'] = array('name'=>'East Caribbean Dollar (XCD)', 'symbol'=>'$');
 	$dt_wc_currencylist['XOF'] = array('name'=>'CFA Franc (BCEAO) (XOF)', 'symbol'=>'Fr');
 	$dt_wc_currencylist['XPF'] = array('name'=>'Pacific Franc (XPF)', 'symbol'=>'Fr');
+	$dt_wc_currencylist['AED'] = array('name'=>'UAE Dirham (AED)', 'symbol'=>'&#1583;.&#1573;');
 	$dt_wc_currencylist['YER'] = array('name'=>'Yemen Riyal (YER)', 'symbol'=>'&#65020;');
 	$dt_wc_currencylist['ZAR'] = array('name'=>'South African Rand (ZAR)', 'symbol'=>'R');
 	$dt_wc_currencylist['ZMK'] = array('name'=>'Zambian Kwacha (ZMK)', 'symbol'=>'Zk');

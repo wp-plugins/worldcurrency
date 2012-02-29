@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: currency, exchange rates, currency converter, currency rates, travel, financial, eCommerce
 Requires at least: 2.8.0
 Tested up to: 3.3.1
-Stable tag: 1.7
+Stable tag: 1.8
 
 Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
 
@@ -32,6 +32,7 @@ With this plugin you can obtain somethig like this: The price of the green curry
 * Currency selection box shorttag available [worldcurrencybox]
 * The currency selection box may be putted everywhere via html placeholder
 * Is possible to choose to hide conversion if target and origin currency are the same
+* Is possible to choose to make ajax calls over SSL
 
 = How To Use (once plugin is installed) =
 Enter any currency values you want converted with the [worldcurrency] shorttag. 
@@ -74,6 +75,10 @@ Alternatively, you can install the plugin automatically through the WordPress Ad
 
 Alternatively, you can update this plugin through the WordPress Admin interface.
 
+If the update includes a new currency that you need, il will appear only after a day because currency rates are cached.
+If you are using historic rates than you have to delete "wc_rates" custom field from the post to have it refreshed with the new currency
+(but keep in mind that this will refresh also the other exchange rates)
+
 == Frequently Asked Questions ==
 
 = Will the plugin have extra features in the future =
@@ -84,6 +89,11 @@ Feel free to propose them.
 There are no screenshots for this plugin, but there is a full demo on the [Plugin's Homepage](http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/)
 
 == Changelog ==
+
+= 1.8 (29th February 2012) =
+* Fix: ajax was not working if wordpress admin is under forced SSL with: define('FORCE_SSL_LOGIN', true);
+* Added: possibility to choose to make ajax calls over SSL
+* Added: Fijian dollar (FJD) - if using historic rates you shuld delete "wc_rates" custom field in each post to have it updated with the new currency
 
 = 1.7 (28th February 2012) =
 * Fix: now plugin uses wordpress ajax handler and should work also with wp-config.php in different locations

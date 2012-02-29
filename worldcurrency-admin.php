@@ -24,6 +24,7 @@
 			$dt_wc_options['bottom_select']			= isset($_POST['bottom_select']) ? 'true' : 'false'; 
 			$dt_wc_options['include_jquery']		= isset($_POST['include_jquery']) ? 'true' : 'false'; 
 			$dt_wc_options['jquery_no_conflict']	= isset($_POST['jquery_no_conflict']) ? 'true' : 'false'; 
+			$dt_wc_options['ajax_over_ssl']			= isset($_POST['ajax_over_ssl']) ? 'true' : 'false'; 
 			
 			update_option('dt_wc_options', $dt_wc_options);
 			
@@ -137,6 +138,14 @@
 								<input type="checkbox" name="jquery_no_conflict" id="jquery_no_conflict" <?php if ($dt_wc_options['jquery_no_conflict']=='true') {echo 'checked="checked"';}?> />
 							</h4>
 							Uses "jQuery" instead of "$" for calling jQuery functions. Usefull also if you have a noconflict version of jQuery included by other themes/plugins
+						</p>
+						
+						<p>
+							<h4>
+								Ajax over SSL:
+								<input type="checkbox" name="ajax_over_ssl" id="ajax_over_ssl" <?php if ($dt_wc_options['ajax_over_ssl']=='true') {echo 'checked="checked"';}?> />
+							</h4>
+							Flag this if your site runs over SSL and you want worldcurrency ajax queries run over SSL too.
 						</p>
 						
 						<p>
