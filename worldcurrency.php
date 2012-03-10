@@ -3,8 +3,8 @@
 Plugin Name: WorldCurrency
 Plugin URI: http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/
 Description: Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
-Version: 1.9
-Date: 29th February 2012
+Version: 1.10
+Date: 10 March 2012
 Author: Daniele Tieghi
 Author URI: http://www.cometicucinoilweb.it/blog/chi-siamo/daniele-tieghi/
    
@@ -105,7 +105,7 @@ EOT;
 			$jQuerySymbol = $dt_wc_options['jquery_no_conflict'] == 'true' ? 'jQuery' : '$';
 			
 			// Include the script only if necessary
-			if (strpos($post->post_content, 'worldcurrency') !== false) {
+			if (get_post_meta($post->ID, 'wc_force', true) == 1 || strpos($post->post_content, 'worldcurrency') !== false) {
 				
 				$usercurrency = dt_wc_userlocation();
 				if (!$usercurrency) {$usercurrency = 'EUR';}

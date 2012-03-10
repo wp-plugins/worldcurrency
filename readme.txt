@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: currency, exchange rates, currency converter, currency rates, travel, financial, eCommerce
 Requires at least: 2.8.0
 Tested up to: 3.3.1
-Stable tag: 1.9
+Stable tag: 1.10
 
 Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
 
@@ -91,34 +91,37 @@ There are no screenshots for this plugin, but there is a full demo on the [Plugi
 
 == Changelog ==
 
-= 1.9 (29th February 2012) =
+= 1.10 (10 March 2012) =
+* Added: it is possible to add "wc_force" = 1 custom field to post to force the loading of worldcurrency code, in case of conflict with other plugins
+
+= 1.9 (29 February 2012) =
 * Added: is now possible to choose the decimal and thousands separator for the output formatting
 
-= 1.8 (29th February 2012) =
+= 1.8 (29 February 2012) =
 * Fix: ajax was not working if wordpress admin is under forced SSL with: define('FORCE_SSL_LOGIN', true);
 * Added: possibility to choose to make ajax calls over SSL
 * Added: Fijian dollar (FJD) - if using historic rates you shuld delete "wc_rates" custom field in each post to have it updated with the new currency
 
-= 1.7 (28th February 2012) =
+= 1.7 (28 February 2012) =
 * Fix: now plugin uses wordpress ajax handler and should work also with wp-config.php in different locations
 
-= 1.6 (22th February 2012) =
+= 1.6 (22 February 2012) =
 * Added option to use a jQuery.noconflict to increase compatibility with other themes/plugins
 
-= 1.5 (21th February 2012) =
+= 1.5 (21 February 2012) =
 * Hides the widget if no currency on page/post
 
-= 1.4 (20th February 2012) =
+= 1.4 (20t February 2012) =
 * Estetic improvements
 
-= 1.2 (20th February 2012) =
+= 1.2 (20 February 2012) =
 * Minor corrections
 * Possibility to choose to hide conversion if target and origin currency are the same
 
-= 1.1 (20th February 2012) =
+= 1.1 (20 February 2012) =
 * Minor improvements and Currency selection box shorttag
 
-= 1.0 (19th February 2012) =
+= 1.0 (19 February 2012) =
 * Initial Release
 
 == Credits ==
