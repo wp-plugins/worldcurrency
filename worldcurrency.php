@@ -3,8 +3,8 @@
 Plugin Name: WorldCurrency
 Plugin URI: http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/
 Description: Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
-Version: 1.10
-Date: 10 March 2012
+Version: 1.11
+Date: 22 March 2012
 Author: Daniele Tieghi
 Author URI: http://www.cometicucinoilweb.it/blog/chi-siamo/daniele-tieghi/
    
@@ -69,6 +69,7 @@ Uses Yahoo! Finance (http://finance.yahoo.com) for conversion rates
 			if ($force || !isset($dt_wc_options['output_format']))			$dt_wc_options['output_format'] = '(~%to_value%%to_symbol% %to_code%)';
 			if ($force || !isset($dt_wc_options['bottom_select']))			$dt_wc_options['bottom_select'] = 'true';
 			if ($force || !isset($dt_wc_options['include_jquery']))			$dt_wc_options['include_jquery'] = 'true';
+			if ($force || !isset($dt_wc_options['include_always']))			$dt_wc_options['include_always'] = 'false';
 			if ($force || !isset($dt_wc_options['jquery_no_conflict']))		$dt_wc_options['jquery_no_conflict'] = 'false';
 			if ($force || !isset($dt_wc_options['ajax_over_ssl']))			$dt_wc_options['ajax_over_ssl'] = 'false';
 			if ($force || !isset($dt_wc_options['plugin_priority']))		$dt_wc_options['plugin_priority'] = 10;
@@ -105,7 +106,7 @@ EOT;
 			$jQuerySymbol = $dt_wc_options['jquery_no_conflict'] == 'true' ? 'jQuery' : '$';
 			
 			// Include the script only if necessary
-			if (get_post_meta($post->ID, 'wc_force', true) == 1 || strpos($post->post_content, 'worldcurrency') !== false) {
+			if ($dt_wc_options['include_always'] == 'true' || get_post_meta($post->ID, 'wc_force', true) == 1 || strpos($post->post_content, 'worldcurrency') !== false) {
 				
 				$usercurrency = dt_wc_userlocation();
 				if (!$usercurrency) {$usercurrency = 'EUR';}

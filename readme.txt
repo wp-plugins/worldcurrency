@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: currency, exchange rates, currency converter, currency rates, travel, financial, eCommerce
 Requires at least: 2.8.0
 Tested up to: 3.3.1
-Stable tag: 1.10
+Stable tag: 1.11
 
 Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
 
@@ -86,10 +86,17 @@ If you are using historic rates than you have to delete "wc_rates" custom field 
 Extra features may be implemented if I find them usefull/interesting and if I have time to develop them.
 Feel free to propose them.
 
+=I use the shortcode in another plugin (like wp-table-reloaded) and the convesions are not working=
+This is because in this cases the WorldCurrency plugin is not aware of the presence of these conversions and the necessary code is not loaded.
+You can add a wc_force = 1 custom field to posts or pages to force the loading of the necessary code in this cases.
+
 == Screenshots ==
 There are no screenshots for this plugin, but there is a full demo on the [Plugin's Homepage](http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/)
 
 == Changelog ==
+
+= 1.11 (22 March 2012) =
+* Added: new configuration parameter to force the script presence on every page
 
 = 1.10 (10 March 2012) =
 * Added: it is possible to add "wc_force" = 1 custom field to post to force the loading of worldcurrency code, in case of conflict with other plugins

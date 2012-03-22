@@ -25,6 +25,7 @@
 			$dt_wc_options['additional_css'] 		= $_POST['additional_css']; 
 			$dt_wc_options['bottom_select']			= isset($_POST['bottom_select']) ? 'true' : 'false'; 
 			$dt_wc_options['include_jquery']		= isset($_POST['include_jquery']) ? 'true' : 'false'; 
+			$dt_wc_options['include_always']		= isset($_POST['include_always']) ? 'true' : 'false'; 
 			$dt_wc_options['jquery_no_conflict']	= isset($_POST['jquery_no_conflict']) ? 'true' : 'false'; 
 			$dt_wc_options['ajax_over_ssl']			= isset($_POST['ajax_over_ssl']) ? 'true' : 'false'; 
 			
@@ -174,6 +175,14 @@
 								<input type="checkbox" name="jquery_no_conflict" id="jquery_no_conflict" <?php if ($dt_wc_options['jquery_no_conflict']=='true') {echo 'checked="checked"';}?> />
 							</h4>
 							Uses "jQuery" instead of "$" for calling jQuery functions. Usefull also if you have a noconflict version of jQuery included by other themes/plugins
+						</p>
+						
+						<p>
+							<h4>
+								Always include the script:
+								<input type="checkbox" name="include_always" id="include_always" <?php if ($dt_wc_options['include_always']=='true') {echo 'checked="checked"';}?> />
+							</h4>
+							Always include the script in the page. Usefull if you want to use the currency conversions also in other parts than pages/posts. (in pages/posts you can force the script presence with a wc_force=1 custom fiels)
 						</p>
 						
 						<p>
