@@ -3,7 +3,7 @@
 Plugin Name: WorldCurrency
 Plugin URI: http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/
 Description: Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
-Version: 1.11
+Version: 1.14
 Date: 22 March 2012
 Author: Daniele Tieghi
 Author URI: http://www.cometicucinoilweb.it/blog/chi-siamo/daniele-tieghi/
@@ -342,7 +342,7 @@ EOT;
 				$_GET[$key] = htmlentities(stripslashes($value));	
 		
 		// Don't proceed if we don't have enough info or if the nonce fails
-			if (!isset($_GET['value']) || !isset($_GET['postId']) || !isset($_GET['historic']) || !isset($_GET['from']) || !isset($_GET['to']) || !check_admin_referer('worldcurrency_safe')) 
+			if (!isset($_GET['value']) || !isset($_GET['historic']) || !isset($_GET['from']) || !isset($_GET['to']) || !check_admin_referer('worldcurrency_safe')) 
 				exit;
 			
 		// Include our Yahoo!Finance class
@@ -354,7 +354,7 @@ EOT;
 			$dt_wc_options = get_option('dt_wc_options');
 			
 		// Check if we need only historic rates 
-		if ($_GET['historic'] == 'true') {
+		if ($_GET['historic'] == 'true' && isset($_GET['postId'])) {
 			
 			// Check if there are rates attached to the post or else saves them
 			if (!($serializedQuotes = get_post_meta($_GET['postId'], 'wc_rates', true))) {

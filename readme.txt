@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: currency, exchange rates, currency converter, currency rates, travel, financial, eCommerce
 Requires at least: 2.8.0
 Tested up to: 3.3.1
-Stable tag: 1.11
+Stable tag: 1.14
 
 Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
 
@@ -95,7 +95,7 @@ There are no screenshots for this plugin, but there is a full demo on the [Plugi
 
 == Changelog ==
 
-= 1.11 (22 March 2012) =
+= 1.14 (22 March 2012) =
 * Added: new configuration parameter to force the script presence on every page
 
 = 1.10 (10 March 2012) =
