@@ -160,7 +160,7 @@
 		'AI' => 'XCD',
 		'AQ' => 'NOK',
 		'AG' => 'XCD',
-		'AR' => 'ARA',
+		'AR' => 'ARS',
 		'AM' => 'AMD',
 		'AW' => 'AWG',
 		'AU' => 'AUD',
