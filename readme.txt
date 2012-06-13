@@ -3,8 +3,8 @@ Contributors: WhiteCubes
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6CUNDYFWV4NUW
 Tags: currency, exchange rates, currency converter, currency rates, travel, financial, eCommerce
 Requires at least: 2.8.0
-Tested up to: 3.3.1
-Stable tag: 1.14
+Tested up to: 3.3.2
+Stable tag: 1.15
 
 Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
 
@@ -34,11 +34,12 @@ With this plugin you can obtain somethig like this: The price of the green curry
 * Is possible to choose to hide conversion if target and origin currency are the same
 * Is possible to choose to make ajax calls over SSL
 * Is possible to choose the decimal and thousands separator for the output format
+* Is possible to force the target currency per each conversion
 
 = How To Use (once plugin is installed) =
 Enter any currency values you want converted with the [worldcurrency] shorttag. 
 	  
-	[worldcurrency cur="EUR" value="25"]
+	[worldcurrency curr="EUR" value="25"]
 		in united states will show: 
 			(~30$ USD)
   
@@ -46,6 +47,7 @@ Parameters:
   
   		curr="***" 				-> the name of the value currency
   		value="***"				-> the value used for exchange
+  		target="***" 			-> the name of the target currency (if you want to force it)
   		historic="true|false"	-> (optional) override main plugin setting
 
 If you want to show the currency selection box anywhere in the post/page use:
@@ -94,6 +96,9 @@ You can add a wc_force = 1 custom field to posts or pages to force the loading o
 There are no screenshots for this plugin, but there is a full demo on the [Plugin's Homepage](http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/)
 
 == Changelog ==
+
+= 1.15 (13 June 2012) =
+* Added: new tag parameter target="" to force target currency
 
 = 1.14 (22 March 2012) =
 * Added: new configuration parameter to force the script presence on every page

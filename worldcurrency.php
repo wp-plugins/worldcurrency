@@ -3,10 +3,10 @@
 Plugin Name: WorldCurrency
 Plugin URI: http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/
 Description: Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
-Version: 1.14
-Date: 22 March 2012
+Version: 1.15
+Date: 13 June 2012
 Author: Daniele Tieghi
-Author URI: http://www.cometicucinoilweb.it/blog/chi-siamo/daniele-tieghi/
+Author URI: www.cometicucinoilweb.it/blog/en/who-we-are/daniele-tieghi/
    
    Copyright 2012 - 2012 Daniele Tieghi  (email: daniele.tieghi(at)gmail.com)
 
@@ -140,7 +140,7 @@ EOT;
 								url: '<?php echo $ajax_url; ?>',
 								dataType: 'html',
 								type: 'GET',
-								data: {'action':'worldcurrency', 'to':userCurrency, 'from':theSpan.attr('curr'), 'value':theSpan.attr('value'), 'postId':theSpan.attr('postId'), 'historic':theSpan.attr('historic') ? theSpan.attr('historic') : '<?php echo $dt_wc_options['historic_rates']; ?>'},
+								data: {'action':'worldcurrency', 'to':theSpan.attr('target') ? theSpan.attr('target') : userCurrency, 'from':theSpan.attr('curr'), 'value':theSpan.attr('value'), 'postId':theSpan.attr('postId'), 'historic':theSpan.attr('historic') ? theSpan.attr('historic') : '<?php echo $dt_wc_options['historic_rates']; ?>'},
 								success: function(html, textStatus) {
 									theSpan.html(html);
 								},
@@ -231,6 +231,7 @@ EOT;
 	 * Parameters:
 	 * 
 	 * 		curr="***" 				-> the name of the value currency
+	 * 		target="***" 			-> the name of the target currency (if you want to force it)
 	 * 		value="***"				-> the value used for exchange
 	 * 		historic="true|false"	-> (optional) override main plugin setting
 	 * 
@@ -242,10 +243,14 @@ EOT;
 		if (!isset($attr['curr']) || !isset($attr['value']))
 			return '[worldcurrency error: curr="" and value="" parameters needed]';
 		
-		if (isset($attr['historic']))
-			return '<span class="worldcurrency" postId="'.$post->ID.'" curr="'.$attr['curr'].'" value="'.$attr['value'].'" historic="'.$attr['historic'].'"></span>';
-		else
-			return '<span class="worldcurrency" postId="'.$post->ID.'" curr="'.$attr['curr'].'" value="'.$attr['value'].'"></span>';
+		$out = '<span class="worldcurrency" postId="'.$post->ID.'" curr="'.$attr['curr'].'" value="'.$attr['value'].'" ';
+		
+		if (isset($attr['historic']))	$out .= 'historic="'.$attr['historic'].'" ';
+		if (isset($attr['target']))		$out .= 'target="'.$attr['target'].'" ';
+
+		$out .= '></span>';
+			
+		return $out;
 	}
 			
 	/**
