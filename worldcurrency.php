@@ -3,7 +3,7 @@
 Plugin Name: WorldCurrency
 Plugin URI: http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/
 Description: Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
-Version: 1.18
+Version: 1.19
 Date: 12 Jamuary 2015
 Author: Daniele Tieghi
 Author URI: www.cometicucinoilweb.it/blog/en/who-we-are/daniele-tieghi/
