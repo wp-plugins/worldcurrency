@@ -1,10 +1,10 @@
-=== WorldCurrency ===
-Contributors: WhiteCubes
+﻿=== WorldCurrency ===
+Contributors: WhiteCubes, JonScaife
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6CUNDYFWV4NUW
 Tags: currency, exchange rates, currency converter, currency rates, travel, financial, eCommerce
 Requires at least: 2.8.0
-Tested up to: 3.3.2
-Stable tag: 1.15
+Tested up to: 4.1
+Stable tag: 1.16
 
 Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
 
@@ -55,7 +55,7 @@ If you want to show the currency selection box anywhere in the post/page use:
 	[worldcurrencybox]
 	  
 = Compatibility: =
-* This plugin is written and tested on Wordpress 3.2.1 and Wordpress 3.3.1, but I think it will work on many other versions.
+* This plugin is tested on Wordpress 4.1, but I think it will work on many other versions.
 
 = Support: =
 This plugin is not officially supported because is made in my free time, but leave a comment on the [plugin's homepage](http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/) and I may help ;)
@@ -96,6 +96,15 @@ You can add a wc_force = 1 custom field to posts or pages to force the loading o
 There are no screenshots for this plugin, but there is a full demo on the [Plugin's Homepage](http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/)
 
 == Changelog ==
+
+= 1.16 (12 January 2015) =
+* Fix: getting rates from yahoo has been fixed
+* Fix: Getting currency rates over SSL address had extra s (httpss), now correctly https
+* Added: Wrapper function for cases where jQuery is loaded defer or async
+* Change: by default a dot is now used for decimal, and comma for thousand separator
+* Change: by default jQuery is used in no conflict mode
+* Change: the default format of output is smaller and tidier with just symbol and value (e.g. $40)
+* Change: Updated the ip2c database from http://software77.net/geo-ip/
 
 = 1.15 (13 June 2012) =
 * Added: new tag parameter target="" to force target currency
