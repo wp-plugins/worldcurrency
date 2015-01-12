@@ -97,6 +97,9 @@ There are no screenshots for this plugin, but there is a full demo on the [Plugi
 
 == Changelog ==
 
+= 1.17 (12 January 2015) =
+* Fix: Corrected typo on the admin pages which showed incorrect shortcode (should be curr= not cur=)
+
 = 1.16 (12 January 2015) =
 * Fix: getting rates from yahoo has been fixed
 * Fix: Getting currency rates over SSL address had extra s (httpss), now correctly https
