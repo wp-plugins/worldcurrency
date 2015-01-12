@@ -148,7 +148,7 @@
 	$dt_wc_currencylist['ZAR'] = array('name'=>'South African Rand (ZAR)', 'symbol'=>'R');
 	$dt_wc_currencylist['ZMK'] = array('name'=>'Zambian Kwacha (ZMK)', 'symbol'=>'Zk');
 	$dt_wc_currencylist['ZWD'] = array('name'=>'Zimbabwe Dollar (ZWD)', 'symbol'=>'Z$');
-	
+
 	// Create the currency location list array
 	$dt_wc_locationlist = array(
 		'AF' => 'AFA',
@@ -183,7 +183,7 @@
 		'BR' => 'BRR',
 		'IO' => 'GBP',
 		'BN' => 'BND',
-		'BG' => 'BGL',
+		'BG' => 'BGN',
 		'BF' => 'XAF',
 		'BI' => 'BIF',
 		'KH' => 'KHR',

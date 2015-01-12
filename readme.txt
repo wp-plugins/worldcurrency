@@ -97,6 +97,9 @@ There are no screenshots for this plugin, but there is a full demo on the [Plugi
 
 == Changelog ==
 
+= 1.18 (12 January 2015) =
+* Fix: Corrected Bulgarian Leva code from BGL to BGN
+
 = 1.17 (12 January 2015) =
 * Fix: Corrected typo on the admin pages which showed incorrect shortcode (should be curr= not cur=)
 
