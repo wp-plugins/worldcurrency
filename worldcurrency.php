@@ -3,8 +3,8 @@
 Plugin Name: WorldCurrency
 Plugin URI: http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/
 Description: Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
-Version: 1.19
-Date: 12 Jamuary 2015
+Version: 1.20
+Date: 12 January 2015
 Author: Daniele Tieghi
 Author URI: www.cometicucinoilweb.it/blog/en/who-we-are/daniele-tieghi/
 
@@ -223,8 +223,32 @@ EOT;
 			global $dt_wc_locationlist;
 			require_once dirname(__FILE__).'/ip2c/ip2c.php';
 
+			// Known prefix
+			$v4mapped_prefix_hex = '00000000000000000000ffff';
+			$v4mapped_prefix_bin = pack("H*", $v4mapped_prefix_hex);
+
+			// Or more readable when using PHP >= 5.4
+			# $v4mapped_prefix_bin = hex2bin($v4mapped_prefix_hex);
+
+			// Parse
+			$addr = $_SERVER['REMOTE_ADDR'];
+			$addr_bin = inet_pton($addr);
+			if( $addr_bin === FALSE ) {
+			  // Unparsable? How did they connect?!?
+			  die('Invalid IP address');
+			}
+
+			// Check prefix
+			if( substr($addr_bin, 0, strlen($v4mapped_prefix_bin)) == $v4mapped_prefix_bin) {
+			  // Strip prefix
+			  $addr_bin = substr($addr_bin, strlen($v4mapped_prefix_bin));
+			}
+
+			// Convert back to printable address in canonical form
+			$addr = inet_ntop($addr_bin);
+
 			$ip2c = new ip2country();
-			$res = $ip2c->get_country($_SERVER['REMOTE_ADDR']);
+			$res = $ip2c->get_country($addr);
 
 			if ($res == false) {
 				return false;

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: currency, exchange rates, currency converter, currency rates, travel, financial, eCommerce
 Requires at least: 2.8.0
 Tested up to: 4.1
-Stable tag: 1.19
+Stable tag: 1.20
 
 Recognises users by IP address and shows them converted values in their local currency, you can write post/pages in multiple currencies.
 
@@ -96,6 +96,9 @@ You can add a wc_force = 1 custom field to posts or pages to force the loading o
 There are no screenshots for this plugin, but there is a full demo on the [Plugin's Homepage](http://www.cometicucinoilweb.it/blog/en/worldcurrency-plugin-for-wordpress/)
 
 == Changelog ==
+
+= 1.20 (12 January 2015) =
+* Fix: Fix for servers which are ipv6 and ipv4, converts all visitor addresses to pure ipv4 format.  Plugin has no support for native ipv6 at this time (the ip2c database is ipv4 only)
 
 = 1.19 (12 January 2015) =
 * Fix: Corrected error in readme
